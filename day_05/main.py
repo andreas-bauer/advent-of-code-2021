@@ -22,5 +22,18 @@ for vec in coords:
 		y2 = max(vec[1], vec[3])	
 		x = vec[0]
 		overlaps[y1:y2+1,x] += 1
+	else:
+		x1, y1, x2, y2 = vec
+		x_factor = 1
+		y_factor = 1
+		if x1 > x2:
+			x_factor = -1
+		if y1 > y2:
+			y_factor = -1
+		while x1 != x2:
+			overlaps[y1, x1] += 1
+			x1 += x_factor
+			y1 += y_factor
+		overlaps[y1, x1] += 1
 
-print(sum(sum(overlaps > 1)))
+print(sum(sum(overlaps >= 2)))
