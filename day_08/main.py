@@ -1,4 +1,5 @@
-input = open('input.txt', 'r').read().split('\n')
+input = open('simple.txt', 'r').read().split('\n')
+input_lines =  [s.split(' | ')[0] for s in input]
 output_lines = [s.split(' | ')[1] for s in input]
 
 ones = 0
@@ -17,4 +18,4 @@ for line in output_lines:
 		elif (len(element)) == 7:
 			eights += 1
 
-print('Total: ' + str(ones + fours + sevens + eights))
+print('Part 1 Total: ' + str(ones + fours + sevens + eights))
