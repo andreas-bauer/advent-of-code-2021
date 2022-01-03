@@ -24,16 +24,22 @@ def flash_range(x,y):
 	)
 
 total_flashes = 0
-for i in range(1,101):
+for i in range(1,401):
 	step_flashes = 0
 	while will_flash(energies):
 		first = first_flash(energies)
 		r = flash_range(first.x, first.y)
-		energies[first.y][first.x] = -9_000
+		energies[first.y][first.x] = -9_000_000
 		energies[r.y_from:r.y_to + 1,r.x_from:r.x_to + 1] += 1
 		step_flashes += 1
-	print('[' + str(i) + '] Flashed ' + str(step_flashes) + ' times')
+	print(f'[{i}] Flashed {step_flashes} times')
 	energies += 1
 	energies[energies < 0] = 0
 	total_flashes += step_flashes
-print('Total flashes: ' + str(total_flashes))
+	all_are_flashing = not energies.any()
+	
+	if all_are_flashing:
+		print(f'All are flashing at step {i}')
+		break
+
+print(f'Total flashes: {total_flashes}')
